@@ -15,7 +15,11 @@
             (keyup)="search(searchTerm.value)"
           />
           <ul class="list-group">
-            <li class="list-group-item" *ngFor="let offer of offers">{{offer.title | shortDescription}}</li>
+            <li class="list-group-item" *ngFor="let offer of offers">
+              <a [routerLink]="['/oferta', offer.id]">
+                {{offer.title | shortDescription: 15}}
+              </a>
+            </li>
           </ul>
         </div>
         <div class="col-md-2">

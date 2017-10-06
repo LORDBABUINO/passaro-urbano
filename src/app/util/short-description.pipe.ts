@@ -4,9 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core'
   name: 'shortDescription'
 })
 export class ShortDescription {
-  transform(text: string): string {
-    if(text.length > 15)
-      return text.substr(0, 15) + '...'
+  transform(text: string, cutAt: number): string {
+    if(text.length > cutAt)
+      return text.substr(0, cutAt) + '...'
     return text;
   }
 }

@@ -28,7 +28,9 @@ export class TopComponent implements OnInit {
     .distinctUntilChanged()
     .switchMap((term: string) => {
       console.log('Fanzendo request http')
-      return this.offersService.searchOffer(term)
+      if(term)
+        return this.offersService.searchOffer(term)
+      return Observable.of<Offer[]>([])
     })
     .catch((error: any) => {
       console.log(error)
@@ -43,7 +45,6 @@ export class TopComponent implements OnInit {
 
   public search(searchTerm: string): void {
     console.log('Evento keyUp disparado: ', searchTerm)
-    if(searchTerm)
-      this.subjectSearch.next(searchTerm)
+    this.subjectSearch.next(searchTerm)
   }
 }
