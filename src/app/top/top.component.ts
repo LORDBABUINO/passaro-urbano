@@ -47,4 +47,8 @@ export class TopComponent implements OnInit {
     console.log('Evento keyUp disparado: ', searchTerm)
     this.subjectSearch.next(searchTerm)
   }
+
+  public clearSearch(): void {
+    this.subjectSearch.next('')
+  }
 }
