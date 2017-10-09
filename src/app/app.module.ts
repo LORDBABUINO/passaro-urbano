@@ -15,7 +15,8 @@ import { OfferComponent } from './offer/offer.component';
 import { HowToUseComponent } from './offer/how-to-use/how-to-use.component';
 import { WhereComponent } from './offer/where/where.component';
 
-import { ShortDescription } from './util/short-description.pipe'
+import { ShortDescription } from './util/short-description.pipe';
+import { BuyOrderComponent } from './buy-order/buy-order.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ShortDescription } from './util/short-description.pipe'
     OfferComponent,
     HowToUseComponent,
     WhereComponent,
-    ShortDescription
+    ShortDescription,
+    BuyOrderComponent
   ],
   imports: [
     BrowserModule,

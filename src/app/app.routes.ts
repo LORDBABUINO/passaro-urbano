@@ -5,6 +5,7 @@ import { FunComponent } from './fun/fun.component'
 import { OfferComponent } from './offer/offer.component'
 import { HowToUseComponent } from './offer/how-to-use/how-to-use.component'
 import { WhereComponent } from './offer/where/where.component'
+import { BuyOrderComponent } from './buy-order/buy-order.component'
 
 export const ROUTES: Routes = [
   { path: '', component: HomeComponent},
@@ -17,5 +18,6 @@ export const ROUTES: Routes = [
       { path: 'como-usar', component: HowToUseComponent},
       { path: 'onde-fica', component: WhereComponent}
     ]
-  }
+  },
+  { path: 'ordem-compra', component: BuyOrderComponent}
 ]
