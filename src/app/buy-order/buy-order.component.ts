@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { BuyOrderService } from '../buy-order.service'
 
 @Component({
   selector: 'app-buy-order',
   templateUrl: './buy-order.component.html',
-  styleUrls: ['./buy-order.component.css']
+  styleUrls: ['./buy-order.component.css'],
+  providers: [ BuyOrderService ]
 })
 export class BuyOrderComponent implements OnInit {
 
@@ -12,7 +14,7 @@ export class BuyOrderComponent implements OnInit {
   public complement: string = ''
   public formPayment: string = ''
 
-  constructor() { }
+  constructor(private buyOrderService: BuyOrderService) { }
 
   ngOnInit() {
   }
