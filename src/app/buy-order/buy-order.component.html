@@ -121,7 +121,7 @@
         <div class="form-group col-md-3">
           <select
             class="form-control is-invalid"
-            #selectedF  ormPayment
+            #selectedFormPayment
             (change)="updateFormPayment(selectedFormPayment.value)"
           >
             <option>Selecione uma opção</option>
@@ -144,7 +144,11 @@
       </div>
 
       <hr />
-      <button type="submit" class="btn btn-primary btn-lg">Cofirmar compra</button>
+      <button
+        type="button"
+        class="btn btn-primary btn-lg"
+        (click)="confirmPurchase()"
+      >Cofirmar compra</button>
     </form>
   </div>
 </div>

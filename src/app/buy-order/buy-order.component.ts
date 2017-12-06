@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BuyOrderService } from '../buy-order.service'
+import { Order } from '../shared/order.model'
 
 @Component({
   selector: 'app-buy-order',
@@ -9,8 +10,9 @@ import { BuyOrderService } from '../buy-order.service'
 })
 export class BuyOrderComponent implements OnInit {
 
+  public order: Order = new Order('','','','')
   public address: string = ''
-  public number: number
+  public number: string = ''
   public complement: string = ''
   public formPayment: string = ''
 
@@ -23,7 +25,7 @@ export class BuyOrderComponent implements OnInit {
     this.address = address
   }
 
-  public updateFormNumber(number: number): void{
+  public updateNumber(number: string): void{
     this.number = number
   }
 
@@ -33,5 +35,13 @@ export class BuyOrderComponent implements OnInit {
 
   public updateFormPayment(formPayment: string): void{
     this.formPayment = formPayment
+  }
+
+  public confirmPurchase(): void{
+    this.order.address = this.address
+    this.order.number = this.number
+    this.order.complement = this.complement
+    this.order.formPayment = this.formPayment
+    this.buyOrderService.makePurchase(this.order)
   }
 }

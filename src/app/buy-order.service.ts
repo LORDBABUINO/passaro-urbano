@@ -1,7 +1,7 @@
-import { Purchase } from './shared/purchase.model'
+import { Order } from './shared/order.model'
 
 export class BuyOrderService {
-  public makePurchase():void{
-    console.log("Purchase made")
+  public makePurchase(order: Order):void{
+    console.log(order)
   }
 }
