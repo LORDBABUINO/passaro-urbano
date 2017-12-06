@@ -43,5 +43,6 @@ export class BuyOrderComponent implements OnInit {
     this.order.complement = this.complement
     this.order.formPayment = this.formPayment
     this.buyOrderService.makePurchase(this.order)
+      .subscribe()
   }
 }
