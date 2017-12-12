@@ -164,7 +164,7 @@
       </div>
 
       <hr />
-      <button type="submit" class="btn btn-primary btn-lg" [disabled]="formStatus">Cofirmar compra</button>
+      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!formStatus? true : null">Cofirmar compra</button>
     </form>
   </div>
 </div>

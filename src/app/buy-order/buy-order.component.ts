@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class BuyOrderComponent implements OnInit {
 
   public address: string = ''
-  public number: number = 0
+  public number: string = ''
   public complement: string = ''
   public formPayment: string = ''
 
@@ -22,7 +22,7 @@ export class BuyOrderComponent implements OnInit {
   public pristineComplement: boolean = true
   public pristineFormPayment: boolean = true
 
-  public formStatus: boolean = true
+  public formStatus: boolean = false
 
   constructor() { }
 
@@ -33,24 +33,24 @@ export class BuyOrderComponent implements OnInit {
     this.address = address
     this.pristineAddress = false
 
-    this.enableForm()
-
     if(this.address.length > 3)
       this.validAddress = true
     else
       this.validAddress = false
+
+    this.enableForm()
   }
 
-  public updateNumber(number: number): void{
+  public updateNumber(number: string): void{
     this.number = number
     this.pristineNumber = false
 
-    this.enableForm()
-
-    if(this.number > 0)
+    if(this.number.length >= 0)
       this.validNumber = true
     else
       this.validNumber = false
+
+    this.enableForm()
   }
 
   public updateComplement(complement: string): void{
@@ -65,18 +65,20 @@ export class BuyOrderComponent implements OnInit {
     this.formPayment = formPayment
     this.pristineFormPayment = false
 
-    this.enableForm()
-
     if(this.formPayment.length > 0)
       this.validFormPayment = true
     else
       this.validFormPayment = false
+
+    this.enableForm()
   }
 
   public enableForm(): void {
-    if(this.validAddress && this.validNumber && this.validFormPayment)
-      this.formStatus = false
-    else
+    if(this.validAddress && this.validNumber && this.validFormPayment){
       this.formStatus = true
+    }
+    else {
+      this.formStatus = false
+    }
   }
 }
