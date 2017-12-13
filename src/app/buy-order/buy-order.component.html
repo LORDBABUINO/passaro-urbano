@@ -71,7 +71,7 @@
         <div class="form-group col-md-6">
           <input
             type="text"
-            class="form-control is-invalid"
+            class="form-control {{pristineAddress? '' : validAddress? 'is-valid': 'is-invalid'}}"
             placeholder="Endereço"
             autocomplete="off"
             minlength="5"
@@ -80,13 +80,20 @@
             #inputAddress
             (input)="updateAddress(inputAddress.value)"
           >
-          <div class="invalid-feedback">Endereço inválido</div>
+          <div *ngIf="!pristineAddress">
+            <div *ngIf="validAddress; else invalidAddress">
+              <small class="form-text text-success">Ok</small>
+            </div>
+            <ng-template #invalidAddress>
+              <small class="form-text text-danger">Endereço inválido</small>
+            </ng-template>
+          </div>
         </div>
 
         <div class="form-group col-md-2">
           <input
             type="text"
-            class="form-control is-valid"
+            class="form-control {{pristineNumber? '' : validNumber? 'is-valid': 'is-invalid'}}"
             placeholder="Número"
             autocomplete="off"
             minlength="1"
@@ -95,13 +102,20 @@
             #inputNumber
             (input)="updateNumber(inputNumber.value)"
           >
-          <small class="form-text text-muted">Ok</small>
+          <div *ngIf="!pristineNumber">
+            <div *ngIf="validNumber; else invalidNumber">
+              <small class="form-text text-success">Ok</small>
+            </div>
+            <ng-template #invalidNumber>
+              <small class="form-text text-danger">Numero inválido</small>
+            </ng-template>
+          </div>
         </div>
 
         <div class="form-group col-md-4">
           <input
             type="text"
-            class="form-control"
+            class="form-control {{pristineComplement? '': validComplement? 'is-valid': ''}}"
             placeholder="Complemento"
             autocomplete="off"
             [value]="complement"
@@ -120,11 +134,11 @@
 
         <div class="form-group col-md-3">
           <select
-            class="form-control is-invalid"
-            #selectedF  ormPayment
+            class="form-control {{pristineFormPayment? '': validFormPayment? 'is-valid': 'is-invalid'}}"
+            #selectedFormPayment
             (change)="updateFormPayment(selectedFormPayment.value)"
           >
-            <option>Selecione uma opção</option>
+            <option value="">Selecione uma opção</option>
             <option
               value="money"
               selected="{{formPayment == 'money'? 'selected' : ''}}"
@@ -138,13 +152,19 @@
               Débito
             </option>
           </select>
-
-          <div class="invalid-feedback">Selecione uma forma de pagamento</div>
+          <div *ngIf="!pristineFormPayment">
+            <div *ngIf="validFormPayment; else invalidFormPayment">
+              <small class="form-text text-success">Ok</small>
+            </div>
+            <ng-template #invalidFormPayment>
+              <small class="form-text text-danger">Selecione uma forma de pagamento</small>
+            </ng-template>
+          </div>
         </div>
       </div>
 
       <hr />
-      <button type="submit" class="btn btn-primary btn-lg">Cofirmar compra</button>
+      <button type="submit" class="btn btn-primary btn-lg" [disabled]="!formStatus? true : null">Cofirmar compra</button>
     </form>
   </div>
 </div>
