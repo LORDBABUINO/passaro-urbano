@@ -16,7 +16,8 @@ import { HowToUseComponent } from './offer/how-to-use/how-to-use.component';
 import { WhereComponent } from './offer/where/where.component';
 
 import { ShortDescription } from './util/short-description.pipe';
-import { BuyOrderComponent } from './buy-order/buy-order.component'
+import { BuyOrderComponent } from './buy-order/buy-order.component';
+import { BuyOrderSuccessComponent } from './buy-order-success/buy-order-success.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BuyOrderComponent } from './buy-order/buy-order.component'
     HowToUseComponent,
     WhereComponent,
     ShortDescription,
-    BuyOrderComponent
+    BuyOrderComponent,
+    BuyOrderSuccessComponent
   ],
   imports: [
     BrowserModule,
