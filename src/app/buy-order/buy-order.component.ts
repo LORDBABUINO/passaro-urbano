@@ -10,6 +10,8 @@ import { Order } from '../shared/order.model'
 })
 export class BuyOrderComponent implements OnInit {
 
+  public idBuyOrder: number
+
   public order: Order = new Order('','','','')
   public address: string = ''
   public number: string = ''
@@ -43,6 +45,8 @@ export class BuyOrderComponent implements OnInit {
     this.order.complement = this.complement
     this.order.formPayment = this.formPayment
     this.buyOrderService.makePurchase(this.order)
-      .subscribe()
+      .subscribe((idOrder: number) => {
+        this.idBuyOrder = idOrder
+      })
   }
 }

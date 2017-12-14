@@ -11,7 +11,7 @@ export class BuyOrderService {
 
   constructor(private http: Http){}
 
-  public makePurchase(order: Order): Observable<any>{
+  public makePurchase(order: Order): Observable<number>{
 
     let headers: Headers = new Headers()
 
@@ -22,6 +22,6 @@ export class BuyOrderService {
       JSON.stringify(order),
       new RequestOptions({ headers: headers })
     )
-    .map((response: Response) => console.log(response.json()))
+    .map((response: Response) => response.json().id)
   }
 }
