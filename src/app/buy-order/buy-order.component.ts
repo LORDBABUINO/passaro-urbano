@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { BuyOrderService } from '../buy-order.service'
+import { Order } from '../shared/order.model'
 
 @Component({
   selector: 'app-buy-order',
   templateUrl: './buy-order.component.html',
-  styleUrls: ['./buy-order.component.css']
+  styleUrls: ['./buy-order.component.css'],
+  providers: [ BuyOrderService ]
 })
 export class BuyOrderComponent implements OnInit {
 
+  public idBuyOrder: number
+
+  public order: Order = new Order('','','','')
   public address: string = ''
   public number: string = ''
   public complement: string = ''
@@ -24,7 +30,7 @@ export class BuyOrderComponent implements OnInit {
 
   public formStatus: boolean = false
 
-  constructor() { }
+  constructor(private buyOrderService: BuyOrderService) { }
 
   ngOnInit() {
   }
@@ -80,5 +86,16 @@ export class BuyOrderComponent implements OnInit {
     else {
       this.formStatus = false
     }
+  }
+
+  public confirmPurchase(): void{
+    this.order.address = this.address
+    this.order.number = this.number
+    this.order.complement = this.complement
+    this.order.formPayment = this.formPayment
+    this.buyOrderService.makePurchase(this.order)
+      .subscribe((idOrder: number) => {
+        this.idBuyOrder = idOrder
+      })
   }
 }
