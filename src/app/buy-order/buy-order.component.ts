@@ -13,13 +13,24 @@ export class BuyOrderComponent implements OnInit {
 
   @ViewChild('form') public form: NgForm
 
-  constructor(private ordemCompraService: BuyOrderService) { }
+  constructor(private buyOrderService: BuyOrderService) { }
 
   ngOnInit() {
 
   }
 
   public confirmPurchase(): void{
-    console.log(this.form)
+
+    let order: Order = new Order(
+      this.form.value.address,
+      this.form.value.number,
+      this.form.value.complement,
+      this.form.value.formPayment
+    )
+
+    this.buyOrderService.makePurchase(order)
+      .subscribe((idOrder: number) => {
+        console.log('id: ' + idOrder)
+      })
   }
 }
