@@ -13,6 +13,8 @@ export class BuyOrderComponent implements OnInit {
 
   @ViewChild('form') public form: NgForm
 
+  public idBuyOrder:number
+
   constructor(private buyOrderService: BuyOrderService) { }
 
   ngOnInit() {
@@ -30,7 +32,7 @@ export class BuyOrderComponent implements OnInit {
 
     this.buyOrderService.makePurchase(order)
       .subscribe((idOrder: number) => {
-        console.log('id: ' + idOrder)
+        this.idBuyOrder = idOrder
       })
   }
 }
