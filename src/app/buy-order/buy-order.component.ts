@@ -11,6 +11,8 @@ import { Order } from '../shared/order.model'
 })
 export class BuyOrderComponent implements OnInit {
 
+  public idBuyOrder: number
+
   public form: FormGroup = new FormGroup({
     'address': new FormControl(null, [
       Validators.required,
@@ -33,10 +35,24 @@ export class BuyOrderComponent implements OnInit {
   }
 
   public confirmPurchase(): void {
-    if(this.form.status === 'INVALID')
-    this.form.get('address').markAsTouched()
-    this.form.get('number').markAsTouched()
-    this.form.get('complement').markAsTouched()
-    this.form.get('formPayment').markAsTouched()
+    if(this.form.status === 'INVALID'){
+      this.form.get('address').markAsTouched()
+      this.form.get('number').markAsTouched()
+      this.form.get('complement').markAsTouched()
+      this.form.get('formPayment').markAsTouched()
+    } else {
+
+      let order = new Order(
+        this.form.value.address,
+        this.form.value.number,
+        this.form.value.complement,
+        this.form.value.formPayment
+      )
+
+      this.buyOrderService.makePurchase(order)
+        .subscribe((idOrder: number) => {
+          this.idBuyOrder = idOrder
+        })
+    }
   }
 }
