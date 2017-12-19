@@ -33,6 +33,10 @@ export class BuyOrderComponent implements OnInit {
   }
 
   public confirmPurchase(): void {
-    console.log(this.form)
+    if(this.form.status === 'INVALID')
+    this.form.get('address').markAsTouched()
+    this.form.get('number').markAsTouched()
+    this.form.get('complement').markAsTouched()
+    this.form.get('formPayment').markAsTouched()
   }
 }

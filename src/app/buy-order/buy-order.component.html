@@ -80,7 +80,7 @@
             class="form-text text-success"
           >Ok</small>
           <small
-            *ngIf="!form.get('address').valid && form.get('address').touched"
+            *ngIf="form.get('address').invalid && form.get('address').touched"
             class="form-text text-danger"
           >Endereço inválido</small>
         </div>
@@ -98,7 +98,7 @@
             class="form-text text-success"
           >Ok</small>
           <small
-            *ngIf="!form.get('number').valid && form.get('number').touched"
+            *ngIf="form.get('number').invalid && form.get('number').touched"
             class="form-text text-danger"
           >Numero inválido</small>
         </div>
@@ -135,7 +135,7 @@
             class="form-text text-success"
           >Ok</small>
           <small
-            *ngIf="!form.get('formPayment').valid && form.get('formPayment').touched"
+            *ngIf="form.get('formPayment').invalid && form.get('formPayment').touched"
             class="form-text text-danger"
           >Forma de pagamento inválida</small>
         </div>
