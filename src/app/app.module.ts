@@ -4,7 +4,11 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 
+import { CartService } from './cart.service'
+
 import { ROUTES } from './app.routes'
+
+import { ShortDescription } from './util/short-description.pipe';
 
 import { AppComponent } from './app.component';
 import { TopComponent } from './top/top.component';
@@ -16,7 +20,6 @@ import { OfferComponent } from './offer/offer.component';
 import { HowToUseComponent } from './offer/how-to-use/how-to-use.component';
 import { WhereComponent } from './offer/where/where.component';
 
-import { ShortDescription } from './util/short-description.pipe';
 import { BuyOrderComponent } from './buy-order/buy-order.component';
 import { BuyOrderSuccessComponent } from './buy-order-success/buy-order-success.component'
 
@@ -41,7 +44,7 @@ import { BuyOrderSuccessComponent } from './buy-order-success/buy-order-success.
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}],
+  providers: [CartService, {provide: LOCALE_ID, useValue: 'pt-Br'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

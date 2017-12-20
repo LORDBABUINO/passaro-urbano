@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { BuyOrderService } from '../buy-order.service'
+import { CartService } from '../cart.service'
+
 import { Order } from '../shared/order.model'
+import { ItemCart } from '../shared/item-cart.model'
 
 @Component({
   selector: 'app-buy-order',
@@ -12,6 +15,7 @@ import { Order } from '../shared/order.model'
 export class BuyOrderComponent implements OnInit {
 
   public idBuyOrder: number
+  public cart: ItemCart[] = []
 
   public form: FormGroup = new FormGroup({
     'address': new FormControl(null, [
@@ -28,10 +32,14 @@ export class BuyOrderComponent implements OnInit {
     'formPayment': new FormControl(null, [Validators.required])
   })
 
-  constructor(private buyOrderService: BuyOrderService) { }
+  constructor(
+    private buyOrderService: BuyOrderService,
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
-
+    this.cart = this.cartService.list()
+    console.log(this.cart)
   }
 
   public confirmPurchase(): void {
