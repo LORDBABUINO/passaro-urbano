@@ -20,7 +20,13 @@ export class CartService {
       1
     )
 
-    this.cart.push(itemCart)
+    let itemFound = this.cart.find((item: ItemCart) => item.id === itemCart.id)
+
+    if(itemFound){
+      itemFound.amount++
+    } else {
+      this.cart.push(itemCart)
+    }
   }
 
   public delete(item: ItemCart): void {}
