@@ -29,6 +29,17 @@ export class CartService {
     }
   }
 
+  public calculateTotal(): number {
+
+    let total: number = 0
+
+    this.cart.map((item: ItemCart) => {
+      total += item.valor * item.amount
+    })
+
+    return total
+  }
+
   public delete(item: ItemCart): void {}
   public change(item: ItemCart): void {}
 }
