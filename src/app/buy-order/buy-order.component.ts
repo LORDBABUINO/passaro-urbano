@@ -39,7 +39,6 @@ export class BuyOrderComponent implements OnInit {
 
   ngOnInit() {
     this.cart = this.cartService.list()
-    console.log(this.cart)
   }
 
   public confirmPurchase(): void {
@@ -66,5 +65,9 @@ export class BuyOrderComponent implements OnInit {
 
   public add(item: ItemCart): void {
     this.cartService.addAmount(item)
+  }
+
+  public subtract(item: ItemCart): void{
+    this.cartService.subtractAmount(item)
   }
 }

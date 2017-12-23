@@ -46,6 +46,15 @@ export class CartService {
 
     itemFound.amount++
   }
+
+  public subtractAmount(item: ItemCart): void{
+
+    let itemFound = this.cart.find((itemCart: ItemCart) => item.id === itemCart.id)
+
+    if(itemFound.amount >= 1)
+      itemFound.amount--
+  }
+
   public delete(item: ItemCart): void {}
   public change(item: ItemCart): void {}
 }
