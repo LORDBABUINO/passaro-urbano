@@ -34,12 +34,18 @@ export class CartService {
     let total: number = 0
 
     this.cart.map((item: ItemCart) => {
-      total += item.valor * item.amount
+      total = total + item.valor * item.amount
     })
 
     return total
   }
 
+  public addAmount(item: ItemCart): void{
+
+    let itemFound = this.cart.find((itemCart: ItemCart) => item.id === itemCart.id)
+
+    itemFound.amount++
+  }
   public delete(item: ItemCart): void {}
   public change(item: ItemCart): void {}
 }

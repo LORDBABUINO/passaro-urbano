@@ -63,4 +63,8 @@ export class BuyOrderComponent implements OnInit {
         })
     }
   }
+
+  public add(item: ItemCart): void {
+    this.cartService.addAmount(item)
+  }
 }
