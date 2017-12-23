@@ -51,8 +51,10 @@ export class CartService {
 
     let itemFound = this.cart.find((itemCart: ItemCart) => item.id === itemCart.id)
 
-    if(itemFound.amount >= 1)
+    if(itemFound.amount > 1)
       itemFound.amount--
+    else
+      this.cart.splice(this.cart.indexOf(itemFound), 1)
   }
 
   public delete(item: ItemCart): void {}
