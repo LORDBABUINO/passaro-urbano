@@ -3,6 +3,12 @@
   margin-bottom: 150px
 }
 
+.item {
+  background: #FAFAFA;
+  padding: 20px;
+  border-bottom: solid 1px #F0F0F0
+}
+
 input.ng-invalid.ng-touched,
 select.ng-invalid.ng-touched {
   border: 1px solid red;
