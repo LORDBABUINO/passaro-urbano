@@ -52,6 +52,7 @@ export class BuyOrderComponent implements OnInit {
     } else {
 
       let order = new Order(
+        this.cartService.cart,
         this.form.value.address,
         this.form.value.number,
         this.form.value.complement,
