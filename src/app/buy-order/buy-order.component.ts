@@ -47,6 +47,8 @@ export class BuyOrderComponent implements OnInit {
       this.form.get('number').markAsTouched()
       this.form.get('complement').markAsTouched()
       this.form.get('formPayment').markAsTouched()
+    } else if(this.cartService.cart.length === 0){
+      alert('Você não selecionou nenhum item!')
     } else {
 
       let order = new Order(
