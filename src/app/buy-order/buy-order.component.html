@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="ordem-compra" *ngIf="idBuyOrder === undefined; else purchaseDone">
+    <form [formGroup]="form" novalidate (ngSubmit)="confirmPurchase()">
+
+      <h5>Sua Compra</h5>
+      <hr />
+
+      <div *ngIf="cartService.cart.length; else emptyCart">
+        <div *ngFor="let item of cart" class="form-row item">
+          <div class="form-group col-sm-1">
+            <img [src]="item.img.url" class="img-fluid">
+          </div>
+          <div class="form-group col-sm-6">
+            {{item.title}}
+            <br />
+            {{item.offerDescription}}
+          </div>
+
+          <div>
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-link" (click)="subtract(item)">-</button>
+                {{item.amount}}
+                <button type="button" class="btn btn-link" (click)="add(item)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-sm-3 d-flex justify-content-end">
+            {{item.amount * item.valor | currency: 'BRL': true}}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col d-flex justify-content-end">
+            <h4>Total do pedido: {{cartService.calculateTotal() | currency: 'BRL': true}}</h4>
+          </div>
+        </div>
+      </div>
+      <ng-template #emptyCart>
+        <div class="form-row d-flex justify-content-center item" #emptyCart>
+          Seu carrinho está vazio. Não perca tempo e aproveite as ofertas!!
+        </div>
+      </ng-template>
+      <br />
+
+      <h5>Dados de entrega</h5>
+      <hr />
+
+      <div class="form-row">
+
+        <div class="form-group col-md-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Endereço"
+            autocomplete="off"
+            formControlName="address"
+          >
+          <small
+            *ngIf="form.get('address').valid && form.get('address').touched"
+            class="form-text text-success"
+          >Ok</small>
+          <small
+            *ngIf="form.get('address').invalid && form.get('address').touched"
+            class="form-text text-danger"
+          >Endereço inválido</small>
+        </div>
+
+        <div class="form-group col-md-2">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Número"
+            autocomplete="off"
+            formControlName="number"
+          >
+          <small
+            *ngIf="form.get('number').valid && form.get('number').touched"
+            class="form-text text-success"
+          >Ok</small>
+          <small
+            *ngIf="form.get('number').invalid && form.get('number').touched"
+            class="form-text text-danger"
+          >Numero inválido</small>
+        </div>
+
+        <div class="form-group col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Complemento"
+            autocomplete="off"
+            formControlName="complement"
+          >
+        </div>
+
+      </div>
+      <br />
+
+      <h5>Dados de pagamento</h5>
+      <hr />
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <select
+            class="form-control"
+            formControlName="formPayment"
+          >
+            <option value="">Selecione uma opção</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="debito">Débito</option>
+          </select>
+          <small
+            *ngIf="form.get('formPayment').valid && form.get('formPayment').touched"
+            class="form-text text-success"
+          >Ok</small>
+          <small
+            *ngIf="form.get('formPayment').invalid && form.get('formPayment').touched"
+            class="form-text text-danger"
+          >Forma de pagamento inválida</small>
+        </div>
+      </div>
+
+      <hr />
+      <button
+        type="submit"
+        class="btn btn-primary btn-lg"
+      >Cofirmar compra</button>
+    </form>
+  </div>
+  <ng-template #purchaseDone>
+    <div class="ordem-compra">
+      <app-buy-order-success [idBuyOrder]="idBuyOrder"></app-buy-order-success>
+    </div>
+  </ng-template>
+</div>
