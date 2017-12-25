@@ -62,6 +62,7 @@ export class BuyOrderComponent implements OnInit {
       this.buyOrderService.makePurchase(order)
         .subscribe((idOrder: number) => {
           this.idBuyOrder = idOrder
+          this.cartService.clearCart()
         })
     }
   }

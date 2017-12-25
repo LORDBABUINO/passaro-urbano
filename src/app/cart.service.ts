@@ -57,6 +57,7 @@ export class CartService {
       this.cart.splice(this.cart.indexOf(itemFound), 1)
   }
 
-  public delete(item: ItemCart): void {}
-  public change(item: ItemCart): void {}
+  public clearCart(): void {
+    this.cart = []
+  }
 }
