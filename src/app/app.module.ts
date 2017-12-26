@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
@@ -44,7 +47,7 @@ import { BuyOrderSuccessComponent } from './buy-order-success/buy-order-success.
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [CartService, {provide: LOCALE_ID, useValue: 'pt-Br'}],
+  providers: [CartService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
